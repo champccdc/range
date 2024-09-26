@@ -1,9 +1,28 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Range Manager</title>
+        <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
         <h1>Range Management</h1>
-        
+        <h4>Logged in as: {{ prox_login }}</h4>
+        <hr/>
+        <h2>Ensure Users</h2>
+        <form onsubmit="return false;">
+            <label for="usernames">Enter comma-separated list of usernames:</label>
+            <input type="text" id="usernames">
+            <button type="button" onclick="ensureUsers();">Submit</button>
+        </form>
+        <h2>Create Range</h2>
+        <form onsubmit="return false;">
+            <label for="vmids">Enter comma-separated list of VMIDs:</label>
+            <input type="text" id="vmids">
+            <br/>
+            <label for="rusernames">Usernames in this range:</label>
+            <input type="text" id="rusernames">
+            <button type="button" onclick="createRange();">Submit</button>
+        </form>
+        <script src="/static/spooky.js"></script>
     </body>
 </html>
