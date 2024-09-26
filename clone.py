@@ -9,10 +9,10 @@ from random import randint
 from pveautomate.automate import ProxmoxManager
 
 if __name__ == "__main__":
-    proxmox_url = "https://10.0.1.12:8006/api2/json"
+    proxmox_url = "https://ccdc.goober.cloud/api2/json"
     proxmox_user = "root@pam"
     proxmox_password = getpass.getpass(f"Authenticate for {proxmox_user}: ")
-    node = "pve5"
+    node = "ccdc"
 
     manager = ProxmoxManager(proxmox_url, proxmox_user, proxmox_password, node)
 
@@ -30,13 +30,13 @@ Q. Quit"""
         )
         c = input("> ")
         if c == "1":
-            manager.create_win_range()
+            manager.create_range([100,101])
         elif c == "5":
             users = input("Comma-seperated list of users to make VMs for: ")
             for user in users.split(","):
                 if not '@' in user:
                     user = user + "@pve"
-                manager.create_win_range(user)
+                manager.create_range([100,101], user)
         elif c == "2":
             manager.destroy_vm(int(input("VMID to destroy (NO CONFIRMATION): ")))
         elif c == "3":
