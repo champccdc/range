@@ -26,6 +26,7 @@ if __name__ == "__main__":
 3. Destroy multiple VMs
 4. Destroy ALL range VMs
 5. Create Windows range VMs for multiple users
+6. Create new user
 Q. Quit"""
         )
         c = input("> ")
@@ -45,5 +46,7 @@ Q. Quit"""
                 manager.destroy_vm(int(id))
         elif c == "4":
             manager.destroy_range()
+        elif c == "6":
+            manager.create_user(input("Username: "), getpass.getpass("Password: "), 'pve')
         else:
             running = False
