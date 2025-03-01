@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from pveautomate.automate import ProxmoxManager
 import getpass,os
 
-PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236") + "/api2/json
+PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236:8006") + "/api2/json"
 
 app = Flask(__name__)
 

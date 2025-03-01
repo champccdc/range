@@ -8,7 +8,7 @@ from random import randint
 
 from pveautomate.automate import ProxmoxManager
 
-PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236") + "/api2/json"
+PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236:8006") + "/api2/json"
 
 if __name__ == "__main__":
     proxmox_url = PROX_URL
