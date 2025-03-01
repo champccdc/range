@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request
 from pveautomate.automate import ProxmoxManager
-import getpass
+import getpass,os
 
+PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236") + "/api2/json
 
 app = Flask(__name__)
 
-proxmox_url = "https://ccdc.goober.cloud/api2/json"
+proxmox_url = PROX_URL
 proxmox_user = "root@pam"
 proxmox_password = getpass.getpass(f"Authenticate for {proxmox_user}: ")
 node = "ccdc"
