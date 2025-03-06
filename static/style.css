@@ -8,6 +8,10 @@ h1, h2, h3 {
     color: green;
 }
 
+a {
+    color: white;
+}
+
 form {
     margin-top: 20px;
 }

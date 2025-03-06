@@ -23,7 +23,7 @@ pm = ProxmoxManager(proxmox_url, proxmox_user, proxmox_password, node)
 @app.route("/")
 def home():
     return render_template(
-        "page.html", content="<h2>Home</h2><a href='/login'>Login</a>"
+        "page.html", content="<h2>Home</h2><p><a href='/selfserve'>Self Serve VMs</a><br/><br/><a href='/login'>Admin Login</a>"
     )
 
 
