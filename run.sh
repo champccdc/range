@@ -8,7 +8,7 @@ fi
 
 
 # Install packages from requirements.txt
-./venv/bin/pip install -r requirements.txt
+./venv/bin/pip install --upgrade -r requirements.txt
 
 if [[ "$1" == "web" ]]; then
 	./venv/bin/python3 web.py

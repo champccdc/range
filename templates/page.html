@@ -6,6 +6,11 @@
     </head>
     <body>
         <h1>NECCDC Range Portal</h1>
+        {% if flash %}
+        <div id="flash">
+            <h3>{{ flash }}</h3>
+        </div>
+        {% endif %}
         {{ content | safe }}
     </body>
 </html>
