@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 proxmox_url = PROX_URL
 proxmox_user = "root@pam"
-proxmox_password = getpass.getpass(f"Authenticate for {proxmox_user}: ")
+# proxmox_password = getpass.getpass(f"Authenticate for {proxmox_user}: ")
+proxmox_password = open(".pvepw").read().strip()
 node = "pve"
 
 SUPER_SECRET = open(".passkey").read().strip()
