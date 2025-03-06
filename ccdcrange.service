@@ -1,0 +1,14 @@
+[Unit]
+Description=Range Mgmt Web UI
+After=network.target
+Wants=network-online.target
+
+[Service]
+Restart=always
+Type=simple
+ExecStart=/home/rangeuser/range/run.sh
+User=rangeuser
+Group=rangeuser
+
+[Install]
+WantedBy=multi-user.target

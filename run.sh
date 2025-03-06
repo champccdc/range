@@ -10,8 +10,8 @@ fi
 # Install packages from requirements.txt
 ./venv/bin/pip install --upgrade -r requirements.txt
 
-if [[ "$1" == "web" ]]; then
-	./venv/bin/python3 web.py
-else
+if [[ "$1" == "tui" ]]; then
 	./venv/bin/python3 tui.py
+else
+	./venv/bin/python3 web.py
 fi
