@@ -3,12 +3,13 @@ import json
 import time
 import getpass
 import urllib3
-import csv,os,sys
+import csv, os, sys
 from random import randint
 
 from pveautomate.automate import ProxmoxManager
 
 PROX_URL = os.getenv("PROXMOX_URL", "https://192.168.3.236:8006") + "/api2/json"
+
 
 def load_csv(file_name):
     try:
@@ -19,6 +20,7 @@ def load_csv(file_name):
     except:
         print("Something funky")
         return None
+
 
 if __name__ == "__main__":
     proxmox_url = PROX_URL
@@ -45,7 +47,7 @@ Q. Quit"""
         if c == "1":
             vmids = input("Comma seperated list of VMIDs (or just one): ")
             tgt = []
-            if not ',' in vmids:
+            if not "," in vmids:
                 tgt.append(int(vmids))
             else:
                 stuff = vmids.split(",")
@@ -55,7 +57,7 @@ Q. Quit"""
         elif c == "5":
             vmids = input("Comma seperated list of VMIDs (or just one): ")
             tgt = []
-            if not ',' in vmids:
+            if not "," in vmids:
                 tgt.append(int(vmids))
             else:
                 stuff = vmids.split(",")
@@ -63,7 +65,7 @@ Q. Quit"""
                     tgt.append(int(vid))
             users = input("Comma-seperated list of users to make VMs for: ")
             for user in users.split(","):
-                if not '@' in user:
+                if not "@" in user:
                     user = user + "@pve"
                 manager.create_range(tgt, user)
         elif c == "2":
@@ -75,10 +77,14 @@ Q. Quit"""
         elif c == "4":
             manager.destroy_range()
         elif c == "6":
-            manager.create_user(input("Username: "), getpass.getpass("Password: "), 'pve')
+            manager.create_user(
+                input("Username: "), getpass.getpass("Password: "), "pve"
+            )
         elif c == "7":
             fn = input("Filename CSV of users: ")
-            newpw = getpass.getpass("Default password for any users we need to create: ")
+            newpw = getpass.getpass(
+                "Default password for any users we need to create: "
+            )
             rows = load_csv(fn)
             if rows is None:
                 print("No such file, or other error")
@@ -87,9 +93,9 @@ Q. Quit"""
                 for index, row in enumerate(rows):
                     username = row[0]
                     group = "Proxmox_Users" if row[1] == "user" else "Proxmox_Admins"
-                    if not manager.check_if_user(username+"@pve"): # doesn't exist
-                        manager.create_user(username, newpw, 'pve')
-                        manager.set_user_group(username+"@pve", group)
+                    if not manager.check_if_user(username + "@pve"):  # doesn't exist
+                        manager.create_user(username, newpw, "pve")
+                        manager.set_user_group(username + "@pve", group)
                         print(f"Created {username}@pve with group {group}")
                     else:
                         print(f"{username} exists. Might have to manually check group?")
