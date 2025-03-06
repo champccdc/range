@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd $HOME/range
+
 # Check if 'venv' directory exists
 if [ ! -d "venv" ]; then
     # Create virtual environment
