@@ -63,11 +63,15 @@ Q. Quit"""
                 stuff = vmids.split(",")
                 for vid in stuff:
                     tgt.append(int(vid))
-            users = input("Comma-seperated list of users to make VMs for: ")
-            for user in users.split(","):
-                if not "@" in user:
-                    user = user + "@pve"
-                manager.create_range(tgt, user)
+
+            users = load_csv("range_users.csv")
+
+            for user in users:
+                if user[1] != "admin":
+                    print("Making range for: " + str(user[0]) + "@pve")
+                    manager.create_range(tgt, user[0]+"@pve")
+                else:
+                    print("Skipping " + str(user[0]))
         elif c == "2":
             manager.destroy_vm(int(input("VMID to destroy (NO CONFIRMATION): ")))
         elif c == "3":
